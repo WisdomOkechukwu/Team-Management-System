@@ -8,7 +8,7 @@
         <div class="card card-statistics h-100 mb-0">
             <div class="card-header d-flex justify-content-between">
                 <div class="card-heading">
-                    <h4 class="card-title">Ongoing projects</h4>
+                    <h4 class="card-title">Teams</h4>
                 </div>
                 <div class="dropdown">
                     <a class="p-2" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

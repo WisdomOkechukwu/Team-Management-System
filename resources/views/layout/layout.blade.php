@@ -156,18 +156,9 @@
                                     </div>
                                     <div class="ml-xl-4 mt-xl-0 ml-0 mt-3 d-flex align-items-center">
                                         <div class="dropdown">
-                                            <a class="btn btn-primary" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Add New
+                                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#teamModal" aria-haspopup="true" aria-expanded="false">
+                                                Add New Team
                                             </a>
-                                            <div class="dropdown-menu custom-dropdown dropdown-menu-right dropdown-menu-left-mobile p-4">
-                                                <a class="dropdown-item" href="#"><i class="ti ti-layers-alt"></i>Add Project </a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-files"></i>Add Task </a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-id-badge"></i>Add Team </a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-pencil-alt"></i>Leave App </a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-email"></i>New Message</a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-user"></i>Edit Profile</a>
-                                                <a class="dropdown-item" href="#"><i class="ti ti-settings"></i>Settings</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,6 +199,34 @@
 
     <!-- custom app -->
     <script src="assets/js/app.js"></script>
+
+    {{-- Add Team Modal --}}
+    <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        @csrf
+                        <div class="form-group">
+                            <label for="modelemail">Team Name</label>
+                            <input type="email" class="form-control" id="modelemail">
+                        </div>
+                        <div class="form-group">
+                            <label for="modelpass">Team Task</label>
+                            <textarea type="text" class="form-control" id="modelpass"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Proceed</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 
