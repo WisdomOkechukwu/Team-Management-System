@@ -17,10 +17,15 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('status');
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('business_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('business_id')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 
