@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.Admin_layout.layout')
 
 @section('content')
 <div class="page-title mb-2 mb-sm-0" >

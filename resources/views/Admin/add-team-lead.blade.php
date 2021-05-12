@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.Admin_layout.TeamCreation')
 
 @section('content')
 <div class="row">

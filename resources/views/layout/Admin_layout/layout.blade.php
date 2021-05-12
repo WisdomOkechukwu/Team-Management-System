@@ -114,23 +114,7 @@
                             
                             <li class="active"><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon zmdi zmdi-accounts-alt"></i><span class="nav-title">Team Management</span></a> </li>
                             <li class="active"><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon zmdi zmdi-accounts-list"></i><span class="nav-title">Employee</span></a> </li>
-                            {{-- Customr Area --}}
-                            <li class="active"><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon zmdi zmdi-account-circle"></i><span class="nav-title">Dashboard</span></a> </li>
-                            
-                            <li class="active"><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon zmdi zmdi-accounts"></i><span class="nav-title">Team Memebers</span></a> </li>
-                            
-                            <li class="active">
-                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                                    <i class="nav-icon zmdi zmdi-folder-person"></i>
-                                    <span class="nav-title">Team Lead Group(s)</span>
-                                    
-                                </a>
-                                <ul aria-expanded="false">
-                                    
-                                    <li class="active"> <a href='index-job-portal.html'>Team A</a> </li>
-                                    
-                                </ul>
-                            </li>    
+                                
                         </ul>
                     </div>
                     <!-- end sidebar-nav -->

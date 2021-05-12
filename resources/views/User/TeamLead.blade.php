@@ -1,6 +1,8 @@
-@extends('layout.layout')
+@extends('layout.User_layout.layout')
 
 @section('content')
+
+
     <div class="row">
         <div class="col-xxl-5 m-b-30">
             <div class="card card-statistics tab nav-border mb-0 h-100">
@@ -149,86 +151,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-xxl-3 m-b-30">
-            <div class="card card-statistics h-100 mb-0">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="card-heading">
-                        <h4 class="card-title">Project Activity</h4>
-                    </div>
-                    <div class="dropdown">
-                        <a class="p-2" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fe fe-more-horizontal"></i>
-                        </a>
-                        <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
-                            <h6 class="mb-1">Action</h6>
-                            <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-o pr-2"></i>View reports</a>
-                            <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-edit pr-2"></i>Edit reports</a>
-                            <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-bar-chart-o pr-2"></i>Statistics</a>
-                            <h6 class="mb-1 mt-3">Export</h6>
-                            <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-pdf-o pr-2"></i>Export to PDF</a>
-                            <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to CSV</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="activity ml-0">
-                        <li class="activity-item primary">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Project Approved</h5>
-                                <span>10th Jan</span>
-                            </div>
-                        </li>
-                        <li class="activity-item info">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Materials Purchased</h5>
-                                <span>
-                                        15th Jan
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="activity-item success">
-                            <div class="activity-info">
-                                <h5 class="mb-0"> Title Cleared</h5>
-                                <span>
-                                    26th Jan
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="activity-item danger">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Bank Approval</h5>
-                                <span>
-                                        2nd Feb
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="activity-item warning">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Assigned Contractor</h5>
-                                <span>6th Feb</span>
-                            </div>
-                        </li>
-                        <li class="activity-item info">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Ground Work In Progress</h5>
-                                <span>
-                                        18th Feb
-                                    </span>
-                            </div>
-                        </li>
-                        <li class="activity-item success">
-                            <div class="activity-info">
-                                <h5 class="mb-0">Half Project Completed</h5>
-                                <span>
-                                        24th Feb
-                                    </span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-xxl-4 m-b-30">
+        
+        <div class="col-lg-14 col-xxl-4 m-b-30">
             <div class="card card-statistics h-100 mb-0">
                 <div class="card-header">
                     <h4 class="card-title">Agent list</h4>
