@@ -19,7 +19,7 @@ class CreatePersonalsTable extends Migration
             $table->bigInteger('worker_id')->unsigned();
             $table->string('date');
             $table->timestamps();
-            $table->foreign('worker_id')->references('id')->on('workers')->onDelete('cascade');
+            $table->foreign('worker_id')->references('id')->on('users')->onDelete('cascade');
            
         });
     }

@@ -20,7 +20,7 @@ class CreateTeamMembersTable extends Migration
             $table->string('status');
             $table->bigInteger('Biz_id')->unsigned();
 
-            $table->foreign('worker_id')->references('id')->on('workers')->onDelete('cascade');
+            $table->foreign('worker_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->foreign('Biz_id')->references('id')->on('users')->onDelete('cascade');
         
