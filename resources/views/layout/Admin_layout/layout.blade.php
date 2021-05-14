@@ -71,7 +71,7 @@
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">
                                                 <i class="fa fa-compass pr-2 text-warning"></i> Registration Link</a>
 
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">View Modal</button>
+                                                
                                             
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="page-title mb-2 mb-xl-0">
                                         <h1 class="mb-1">Good Morning, {{ auth()->user()->name }}</h1>
-                                        </div>
+                                    </div>
                                     <div class="ml-auto d-flex align-items-center secondary-menu text-center">
                                         
                                     </div>
