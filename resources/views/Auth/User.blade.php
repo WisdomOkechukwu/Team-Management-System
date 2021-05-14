@@ -107,7 +107,7 @@
                                                     <button type="submit"  class="btn btn-primary text-uppercase">Sign up</button>
                                                 </div>
                                                 <div class="col-12  mt-3">
-                                                    <p>Already have an account ?<a href="auth-login.html"> Sign In</a></p>
+                                                    <p>Already have an account ?<a href="{{ route('login') }}"> Sign In</a></p>
                                                 </div>
                                             </div>
                                         </form>

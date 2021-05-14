@@ -71,7 +71,7 @@
                                                     <button type="submit" class="btn btn-primary text-uppercase">Sign In</button>
                                                 </div>
                                                 <div class="col-12  mt-3">
-                                                    <p>Don't have an account ?<a href="auth-register.html"> Sign Up</a></p>
+                                                    <p>Don't have an account ?<a href="{{ route('register') }}"> Sign Up</a></p>
                                                 </div>
                                             </div>
                                         </form>

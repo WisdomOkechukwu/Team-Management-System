@@ -180,16 +180,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('AdminDashboard') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="modelemail">Team Name</label>
-                            <input type="email" class="form-control" id="modelemail">
+                            <input name="task" type="text" class="form-control" id="modelemail" required>
                         </div>
+
                         <div class="form-group">
                             <label for="modelpass">Team Task</label>
-                            <textarea type="text" class="form-control" id="modelpass"></textarea>
+                            <textarea name="details" type="text" class="form-control" id="modelpass" required></textarea>
                         </div>
+
+                        
+                        <div class="form-group">
+                            <label for="modelpass">Project Duration</label>
+                            <div class="input-group" data-date="23/11/2018" data-date-format="mm/dd/yyyy">
+                                <input type="text" class="form-control range-from" name="from" placeholder="Start Date" required>
+                                <span class="input-group-addon">To</span>
+                                <input class="form-control range-to" type="text" placeholder="End Date" name="to" required>
+                            </div>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">Proceed</button>
                     </form>
                 </div>

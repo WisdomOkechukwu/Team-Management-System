@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Worker\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,14 +24,12 @@ Route::post('/worker', [RegisterController::class,'workerstore'])->name('workers
 
 //Admin Routes
 Route::get('/Admin',[AdminController::class,'index'])->name('AdminDashboard');
+Route::post('/Admin',[AdminController::class,'addTeam']);
 
 Route::get('/employee',[AdminController::class,'employee'])->name('Employee');
 
 Route::get('/teams',[AdminController::class,'team_management'])->name('TeamManagement');
 
-Route::get('/edit',[AdminController::class,'edit_team'])->name('EditTeam');
-
-Route::get('/edit',[AdminController::class,'add_team_lead'])->name('TeamLead');
-
-Route::get('/edit',[AdminController::class,'add_team_members'])->name('Members');
+//Worker Route
+Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard');
 

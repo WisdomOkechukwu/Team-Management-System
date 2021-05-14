@@ -26,12 +26,10 @@ class LoginController extends Controller
          }
          
          if(auth()->user()->status == "Admin")
-
-         
          {
-            return view('Admin.admin');
+            return redirect()->route('AdminDashboard');
          }
 
-        //  ;
+         return redirect()->route('WorkerDashboard');
     }
 }

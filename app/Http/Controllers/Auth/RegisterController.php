@@ -41,7 +41,7 @@ class RegisterController extends Controller
         User::create([
             'name' => $request->name,
             'company' => $request->company_name,
-            'company-slug' => $company_slug,
+            'company_slug' => $company_slug,
             'status' => $status,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -49,6 +49,8 @@ class RegisterController extends Controller
         ]);
 
         Auth::attempt($request->only('email','password'));
+
+        return redirect()->route('AdminDashboard');
 
         
 
@@ -108,7 +110,7 @@ class RegisterController extends Controller
 
         Auth::attempt($request->only('email','password'));
 
-        dd('done');
+        return redirect()->route('WorkerDashboard');
 
     }
 }

@@ -16,7 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('team_name');
-            $table->string('teamo_bjectives');
+            $table->string('team_objectives');
             $table->string('status');
             $table->string('start_date');
             $table->string('end_date');

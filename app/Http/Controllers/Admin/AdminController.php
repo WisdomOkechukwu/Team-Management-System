@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,8 @@ class AdminController extends Controller
     {
         $this->middleware(['auth']);
     }
+
+
     public function employee_select()
     {
         $value = User::select('*')
@@ -40,6 +43,29 @@ class AdminController extends Controller
             'Worker'=> $value,
         ]);
     }
+
+
+    public function addTeam(Request $request)
+    {
+        $team = new Team();
+        
+        $team->team_name = $request->task;
+        $team->team_objectives = $request->details;
+        $team->status  = 'Pending';
+        $team->start_date = $request->from;
+        $team->end_date = $request->to;
+        $team->Biz_id = auth()->user()->id;
+        $team->save();
+        
+        
+        $value = $this->employee_select();
+        
+        return view('Admin.add-team-members',[
+            'Employee'=> $value,
+        ]);
+
+    }
+
     public function team_management()
     {
         return view('Admin.team-management');
