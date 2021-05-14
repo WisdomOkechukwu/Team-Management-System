@@ -21,7 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'company',
-        'company-slug',
+        'company_slug',
         'Biz_id',
         'status',
         'image',

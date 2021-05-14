@@ -81,25 +81,29 @@
                     <h4 class="card-title">Employee list</h4>
                 </div>
                 <div class="dropdown">
-                    <a class="btn btn-round btn-inverse-primary btn-xs" href="#!">View All </a>
+                    <a class="btn btn-round btn-inverse-primary " href="{{ route('Employee') }}">View All </a>
                 </div>
             </div>
             <div class="card-body">
+                @foreach ($Worker as $key)
+                
                 <div class="row align-items-center m-b-20">
                     <div class="col-12 col-sm-2 mb-3 mb-sm-0">
                         <div class="bg-img">
-                            <img class="img-fluid" src="assets/img/avtar/01.jpg" alt="user">
+                            <img style="height: 59px;" class="img-fluid" src="assets/img/profile/{{ $key->image }}" alt="user">
                         </div>
                     </div>
                     <div class="col-12 col-sm-7 mb-3 mb-sm-0">
-                        <h4 class="mb-0">Jon Watson</h4>
-                        <span class="badge badge-primary-inverse">jonwatson@gmail.com</span>
+                        <h4 class="mb-0">{{ $key->name }}</h4>
+                        <a href="mailto:{{ $key->email }}" class="badge badge-primary-inverse">{{ $key->email }}</a>
                     </div>
                     
                 </div>
+                @endforeach
                 
                 
             </div>
+            
         </div>
     </div>
 

@@ -58,7 +58,7 @@ class RegisterController extends Controller
     public function workerindex($slug)
     {
         $value = User::select('*')
-        ->where('company-slug','=', $slug)->get();
+        ->where('company_slug','=', $slug)->get();
         
         $company_name = '';
         $company_id=0;

@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function verify(Request $request)
     {
+        
         $this->validate($request,[
             'email' =>'required|email',
             'password'=>'required',
@@ -23,6 +24,14 @@ class LoginController extends Controller
          if(!Auth::attempt($request->only('email','password'))){
             return back()->with('Login_Status','Invalid Login Details');
          }
-        //  return view('Admin.admin');
+         
+         if(auth()->user()->status == "Admin")
+
+         
+         {
+            return view('Admin.admin');
+         }
+
+        //  ;
     }
 }
