@@ -54,4 +54,61 @@ class RegisterController extends Controller
 
         
     }
+
+    public function workerindex($slug)
+    {
+        $value = User::select('*')
+        ->where('company-slug','=', $slug)->get();
+        
+        $company_name = '';
+        $company_id=0;
+        foreach($value as $key){
+            $company_name = $key->company;
+            $company_id = $key->id;
+        }
+                
+        if(count($value) == 0){
+            return view('Error.Util.error');
+            
+        }
+        
+            return view('Auth.User',[
+                'company'=>$company_name,
+                'company_id'=>$company_id,
+            ]);
+        
+    
+    }
+
+    public function workerstore(Request $request)
+    {
+        
+        $this->validate($request,[
+            
+            'name' => 'required|max:225',
+            'picture' => 'required',
+            'email' =>'required|email|unique:users,email',
+            'password'=>['required','confirmed',Password::min(8)->mixedCase()],
+         ]);
+
+        $image = $request->file('picture');
+        $imageName = time().'.'.$image->extension();
+        $image->move(public_path('assets/img/profile'),$imageName);
+
+        $status = 'Worker';
+
+        User::create([
+            'name' => $request->name,
+            'status' => $status,
+            'Biz_id'=>$request->slug,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'image' =>$imageName,
+        ]);
+
+        Auth::attempt($request->only('email','password'));
+
+        dd('done');
+
+    }
 }

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,4 +17,6 @@ Route::post('/login',[LoginController::class,'verify']);
 Route::get('/register', [RegisterController::class,'index'])->name('register');
 Route::post('/register', [RegisterController::class,'store']);
 
+Route::get('/register/{slug}', [RegisterController::class,'workerindex'])->name('worker');
+Route::post('/registers', [RegisterController::class,'workerstore'])->name('workers');
 

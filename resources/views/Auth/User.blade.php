@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 
@@ -10,13 +11,13 @@
     <meta name="author" content="Potenza Global Solutions" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- app favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors.css') }}" />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
 </head>
 
 <body class="bg-white">
@@ -24,15 +25,7 @@
     <div class="app">
         <!-- begin app-wrap -->
         <div class="app-wrap">
-            <!-- begin pre-loader -->
-            <div class="loader">
-                <div class="h-100 d-flex justify-content-center">
-                    <div class="align-self-center">
-                        <img src="assets/img/loader/loader.svg" alt="loader">
-                    </div>
-                </div>
-            </div>
-            <!-- end pre-loader -->
+            
 
             <!--start login contant-->
             <div class="app-contant">
@@ -43,8 +36,8 @@
                                 <div class="d-flex align-items-center h-100-vh">
                                     <div class="register p-5">
                                         <h1 class="mb-2">Sign Up</h1>
-                                        <p>Welcome, Please create your account.</p>
-                                        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" class="mt-2 mt-sm-5">
+                                        <p>Welcome to {{ $company }}</p>
+                                        <form action="{{ route('workers') }}" method="POST" enctype="multipart/form-data" class="mt-2 mt-sm-5">
                                             @csrf
                                             <div class="row">
                                               
@@ -61,13 +54,8 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="control-label">Company name</label>
-                                                        <input @error('company_name') style="border-color: red;"@enderror
-                                                         type="text" name="company_name" class="form-control" placeholder="Company Name"
-                                                         value="{{ old('company_name') }}" />
-                                                         @error('company_name')
-                                                            <h6 style="color: red">{{ $message }}</h6>
-                                                        @enderror
+                                                        <input type="hidden" name="slug" class="form-control" placeholder="Company Name"
+                                                         value="{{ $company_id }}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -129,7 +117,7 @@
                             <div class="col-sm-6 col-xxl-9 col-lg-7 bg-gradient o-hidden order-1 order-sm-2">
                                 <div class="row align-items-center h-100">
                                     <div class="col-7 mx-auto ">
-                                        <img class="img-fluid" src="assets/img/bg/login.svg" alt="">
+                                        <img class="img-fluid" src="{{ asset('assets/img/bg/login.svg') }}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -145,10 +133,10 @@
 
 
     <!-- plugins -->
-    <script src="assets/js/vendors.js"></script>
+    <script src="{{ asset('assets/js/vendors.js') }}"></script>
 
     <!-- custom app -->
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 </html>

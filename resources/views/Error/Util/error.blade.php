@@ -14,9 +14,9 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors.css') }}" />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
 </head>
 
 <body>
@@ -25,13 +25,7 @@
         <!-- begin app-wrap -->
         <div class="app-wrap">
             <!-- begin pre-loader -->
-            <div class="loader">
-                <div class="h-100 d-flex justify-content-center">
-                    <div class="align-self-center">
-                        <img src="assets/img/loader/loader.svg" alt="loader">
-                    </div>
-                </div>
-            </div>
+            
             <!-- end pre-loader -->
 
             <!--start error-404-contant-->
@@ -169,7 +163,7 @@
                                     </svg>
                                     <h3 class="m-t-30">What on earth are you doing here!</h3>
                                     <p>Well this is awkward, the page you were trying to view does not exist.</p>
-                                    <a href="index.html" class="btn btn-round btn-primary mt-3">Back to Home</a>
+                                    <a href="{{ route('login') }}" class="btn btn-round btn-primary mt-3">Back to Home</a>
                                 </div>
                             </div>
                         </div>
@@ -184,10 +178,10 @@
     <!-- end app -->
 
     <!-- plugins -->
-    <script src="assets/js/vendors.js"></script>
+    <script src="{{ asset('assets/js/vendors.js') }}"></script>
 
     <!-- custom app -->
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'password',
         'company',
         'company-slug',
+        'Biz_id',
         'status',
         'image',
     ];
