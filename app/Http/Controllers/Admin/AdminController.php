@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Team;
+use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,10 @@ class AdminController extends Controller
 
     public function addTeam(Request $request)
     {
+        
+        $this->validate($request,[
+            'task' => 'unique:teams,team_name',
+        ]);
         $team = new Team();
         
         $team->team_name = $request->task;
@@ -62,6 +67,7 @@ class AdminController extends Controller
         
         return view('Admin.add-team-members',[
             'Employee'=> $value,
+            'Team_name' =>$request->task,
         ]);
 
     }
@@ -74,9 +80,56 @@ class AdminController extends Controller
     {
         return view('Admin.add-team-lead');
     }
-    public function add_team_members()
+    
+    public function add_team_members(Request $request)
     {
-        return view('Admin.add-team-members');
+        $value = $this->employee_select();
+        $Searcher = TeamMember::select('*')
+        ->where('worker_id','=', $request->id)
+        ->get();
+        
+        if(count($Searcher) ==0){
+
+
+            $User_id = User::find($request->id);
+            $team = Team::select('*')
+            ->where('team_name','=', $request->team )
+            ->get();
+
+            
+            
+            $teamiD = 0;
+            foreach($team as $key){
+                $teamiD = $key->id;
+            }
+            
+            $Team_Memeber = new TeamMember();
+            $Team_Memeber->worker_id = $User_id->id;
+            $Team_Memeber->team_id = $teamiD;
+            $Team_Memeber->status = "Member";
+            $Team_Memeber->Biz_id = auth()->user()->id;
+
+            $Team_Memeber -> save();
+            
+            return view('Admin.add-team-members',[
+                'data' => "Inserted",
+                'Employee'=> $value,
+                'Team_name' =>$request->team,
+            ]);
+        }
+        else{
+            
+            return view('Admin.add-team-members',[
+                'data' => "Already Inserted",
+                'Employee'=> $value,
+                'Team_name' =>$request->team,
+                ]);
+        }
+
+
+
+        
+       
     }
     public function edit_team(){
         return view('Admin.edit-team');

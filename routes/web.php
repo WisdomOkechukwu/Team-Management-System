@@ -25,6 +25,8 @@ Route::post('/worker', [RegisterController::class,'workerstore'])->name('workers
 //Admin Routes
 Route::get('/Admin',[AdminController::class,'index'])->name('AdminDashboard');
 Route::post('/Admin',[AdminController::class,'addTeam']);
+    // Add Team Members
+Route::post('/add-team',[AdminController::class,'add_team_members'])->name('AddTeamMember');
 
 Route::get('/employee',[AdminController::class,'employee'])->name('Employee');
 

@@ -1,6 +1,10 @@
 @extends('layout.Admin_layout.TeamCreation')
 
 @section('content')
+@if ($data)
+    <script>
+    alert("{{ $data }}")</script>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card card-statistics clients-contant">
@@ -22,27 +26,36 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($Employee as $key)
+                            
+                        <form action="{{ route('AddTeamMember') }}" method="POST">
+                            @csrf
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="bg-img mr-4">
-                                        <img src="assets/img/avtar/01.jpg" class="img-fluid" alt="Clients-01">
+                                        <img src="assets/img/profile/{{ $key->image }}" class="img-fluid" alt="Clients-01">
                                     </div>
-                                    <p class="font-weight-bold">Adrian Demiandro</p>
+                                    <p class="font-weight-bold">{{ $key->name }}</p>
                                 </div>
                             </td>
                             
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
-                                    <i class="ti ti-plus"></i></a>
+                                <input type="hidden" name="team" value="{{ $Team_name }}">
+                                <input type="hidden" name="id" value="{{ $key->id }}">
+                                <button type="submit" class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
+                                    <i class="ti ti-plus"></i></button>
                                 
                             </td>
+                            
                         </tr>
+                    </form>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#teamModal" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-primary" href="{{ route }}" data-toggle="modal" data-target="#teamModal" aria-haspopup="true" aria-expanded="false">
                 Procced
             </a>
     </div>

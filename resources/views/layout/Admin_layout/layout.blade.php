@@ -184,7 +184,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="modelemail">Team Name</label>
-                            <input name="task" type="text" class="form-control" id="modelemail" required>
+                            <input @error('task') style="border-color: red;"@enderror  
+                            name="task" type="text" class="form-control" id="modelemail" required>
+                            @error('task')
+                                <h6 style="color: red">{{ $message }}</h6>
+                                <script>alert("{{ $message }}");</script>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -241,6 +246,7 @@
             </div>
         </div>
     </div>
+    
 </body>
 
 
