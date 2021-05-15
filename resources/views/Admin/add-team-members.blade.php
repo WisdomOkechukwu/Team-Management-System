@@ -1,7 +1,7 @@
 @extends('layout.Admin_layout.TeamCreation')
 
 @section('content')
-@if ($data)
+@if (isset($data))
     <script>
     alert("{{ $data }}")</script>
 @endif
@@ -33,8 +33,8 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="bg-img mr-4">
-                                        <img src="assets/img/profile/{{ $key->image }}" class="img-fluid" alt="Clients-01">
+                                    <div  class="bg-img mr-4">
+                                        <img style="height: 50px;" src="{{ $key->image }}" class="img-fluid" alt="Clients-01">
                                     </div>
                                     <p class="font-weight-bold">{{ $key->name }}</p>
                                 </div>
@@ -55,7 +55,7 @@
                 </table>
             </div>
         </div>
-            <a class="btn btn-primary" href="{{ route }}" data-toggle="modal" data-target="#teamModal" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-primary" href="team-lead/{{ $Team_name }}" >
                 Procced
             </a>
     </div>

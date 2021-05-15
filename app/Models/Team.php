@@ -10,4 +10,8 @@ class Team extends Model
     use HasFactory;
     
     protected $table = "teams";
+
+    public function users(){
+        return $this->belongsToMany(User::class,'team_members');
+    }
 }

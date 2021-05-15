@@ -29,9 +29,16 @@ class AdminController extends Controller
     public function index()
     {   
         $value = $this->employee_select();
+        $server_name = $_SERVER['HTTP_HOST'];
+        $teamed = Team::select('*')
+            ->where('Biz_id','=', auth()->user()->id)
+            ->get();
+
         
         return view('Admin.admin',[
             'Worker'=> $value,
+            'server' =>$server_name,
+            'Teams' => $teamed,
         ]);
     }
 
@@ -76,19 +83,90 @@ class AdminController extends Controller
     {
         return view('Admin.team-management');
     }
-    public function add_team_lead()
+    public function show_team_lead($team)
     {
-        return view('Admin.add-team-lead');
+       
+        $team = Team::select('*')
+            ->where('team_name','=', $team )
+            ->get();
+
+            $teamiD = 0;
+            foreach($team as $key){
+                $teamiD = $key->id;
+            }
+
+        $teami = Team::find($teamiD);
+         $teams = $teami->users;
+
+         
+         
+        return view('Admin.add-team-lead',[
+            'Members' => $teams,
+            'Team' => $teamiD
+        ]);
     }
-    
+
+    public function add_team_lead(Request $request)
+    {
+        
+        $user_id = $request->user_id;
+        $team_id = $request->team_id;
+
+        $team = TeamMember::select('*')
+            ->where('user_id','=', $user_id )
+            ->where('team_id','=', $team_id )
+            ->get();
+
+        $teamId = 0;
+        foreach($team as $key){
+            $teamId = $key->id;
+        }
+        $team_update =  TeamMember::find($teamId);
+        $team_update->user_id = $user_id;
+        $team_update->team_id = $team_id;
+        $team_update->status = "Lead";
+        $team_update->Biz_id = auth()->user()->id;
+
+        $team_update->save();
+
+        $value = $this->employee_select();
+        $server_name = $_SERVER['HTTP_HOST'];
+        $teamed = Team::select('*')
+            ->where('Biz_id','=', auth()->user()->id)
+            ->get();
+
+        
+        return view('Admin.admin',[
+            'Worker'=> $value,
+            'server' =>$server_name,
+            'Teams' => $teamed,
+        ]);
+        
+    }
+
     public function add_team_members(Request $request)
     {
+        $User_id = User::find($request->id);
+            $team = Team::select('*')
+            ->where('team_name','=', $request->team )
+            ->get();
+
+            
+            
+            $teamiD = 0;
+            foreach($team as $key){
+                $teamiD = $key->id;
+            }
+        
         $value = $this->employee_select();
         $Searcher = TeamMember::select('*')
-        ->where('worker_id','=', $request->id)
+        ->where('user_id','=', $request->id)
+        ->where('team_id','=', $teamiD)
         ->get();
         
-        if(count($Searcher) ==0){
+        
+        
+        if(count($Searcher) == 0){
 
 
             $User_id = User::find($request->id);
@@ -104,7 +182,7 @@ class AdminController extends Controller
             }
             
             $Team_Memeber = new TeamMember();
-            $Team_Memeber->worker_id = $User_id->id;
+            $Team_Memeber->user_id = $User_id->id;
             $Team_Memeber->team_id = $teamiD;
             $Team_Memeber->status = "Member";
             $Team_Memeber->Biz_id = auth()->user()->id;
@@ -120,7 +198,7 @@ class AdminController extends Controller
         else{
             
             return view('Admin.add-team-members',[
-                'data' => "Already Inserted",
+                'data' => "Already In The Team",
                 'Employee'=> $value,
                 'Team_name' =>$request->team,
                 ]);

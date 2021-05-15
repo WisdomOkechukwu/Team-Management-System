@@ -22,22 +22,35 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
+                        @foreach ($Members as $key)
+                        @if ($key->Biz_id == auth()->user()->id)
+
+                        <form action="{{ route('TeamLead') }}" method="POST">
+                            @csrf
                         <tr>
                             <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-img mr-4">
-                                        <img src="assets/img/avtar/01.jpg" class="img-fluid" alt="Clients-01">
+                                <div  class="d-flex align-items-center">
+                                    <div  class="bg-img mr-4">
+                                        <img style="height: 50px;" src="{{ asset($key->image) }}" class="img-fluid" alt="Clients-01">
                                     </div>
-                                    <p class="font-weight-bold">Adrian Demiandro</p>
+                                    <p class="font-weight-bold">{{ $key->name }}</p>
                                 </div>
                             </td>
+                            <input type="hidden" name="team_id" value="{{ $Team }}" >
+                            <input type="hidden" name="user_id" value="{{ $key->id }}" >
+                            <input type="hidden" name="status" value="Lead" >
+                            
                             
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
-                                    <i class="ti ti-plus"></i></a>
+                                <button class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
+                                    <i class="ti ti-plus"></i></button>
                                 
                             </td>
                         </tr>
+                    </form>
+                    @endif
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -15,12 +15,12 @@ class CreateTeamMembersTable extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('worker_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('team_id')->unsigned();
             $table->string('status');
             $table->bigInteger('Biz_id')->unsigned();
 
-            $table->foreign('worker_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->foreign('Biz_id')->references('id')->on('users')->onDelete('cascade');
         

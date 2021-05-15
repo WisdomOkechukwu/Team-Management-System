@@ -36,6 +36,8 @@ class RegisterController extends Controller
         $image = $request->file('picture');
         $imageName = time().'.'.$image->extension();
         $image->move(public_path('assets/img/profile'),$imageName);
+
+        $imageus = "assets/img/profile/$imageName";
         
          
         User::create([
@@ -45,7 +47,7 @@ class RegisterController extends Controller
             'status' => $status,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' =>$imageName,
+            'image' =>$imageus,
         ]);
 
         Auth::attempt($request->only('email','password'));
@@ -96,7 +98,7 @@ class RegisterController extends Controller
         $image = $request->file('picture');
         $imageName = time().'.'.$image->extension();
         $image->move(public_path('assets/img/profile'),$imageName);
-
+        $imageus = "assets/img/profile/$imageName";
         $status = 'Worker';
 
         User::create([
@@ -105,7 +107,7 @@ class RegisterController extends Controller
             'Biz_id'=>$request->slug,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' =>$imageName,
+            'image' =>$imageus,
         ]);
 
         Auth::attempt($request->only('email','password'));

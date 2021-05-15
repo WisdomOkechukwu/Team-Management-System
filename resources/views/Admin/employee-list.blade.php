@@ -12,7 +12,7 @@
             <div class="card-body pb-5 pt-4">
                 <div class="text-center">
                     
-                    <div class="pt-1 bg-img m-auto"><img style="height: 59px;" src="assets/img/profile/{{ $key->image }}" class="img-fluid" alt="employees-img"></div>
+                    <div class="pt-1 bg-img m-auto"><img style="height: 59px;" src="{{ $key->image }}" class="img-fluid" alt="employees-img"></div>
                     <div class="mt-3 employees-contant-inner">
                         <h4 class="mb-1">{{ $key->name }}</h4>
                         <a href="mailto:{{ $key->email }}" class="mb-0 badge badge-pill badge-info-inverse px-3 py-2">{{ $key->email }}</a>

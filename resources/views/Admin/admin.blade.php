@@ -10,20 +10,7 @@
                 <div class="card-heading">
                     <h4 class="card-title">Teams</h4>
                 </div>
-                <div class="dropdown">
-                    <a class="p-2" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fe fe-circle"></i>
-                    </a>
-                    <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
-                        <h6 class="mb-1">Action</h6>
-                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-o pr-2"></i>View reports</a>
-                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-edit pr-2"></i>Edit reports</a>
-                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-bar-chart-o pr-2"></i>Statistics</a>
-                        <h6 class="mb-1 mt-3">Export</h6>
-                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-pdf-o pr-2"></i>Export to PDF</a>
-                        <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to CSV</a>
-                    </div>
-                </div>
+                
             </div>
             <div class="card-body">
                 <div class="max-h-600 scrollbar scroll_dark" style="height: 400px">
@@ -34,38 +21,28 @@
                                     <th>Project Name </th>
                                     <th> Start Date </th>
                                     <th> Due Date </th>
-                                    <th>Team </th>
+                                    
                                     <th>Status</th>
-                                    <th>Clients</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody class="text-muted">
+                                @foreach ($Teams as $key)
+                                    
+                                
                                 <tr>
-                                    <td>App Design and development </td>
-                                    <td>Dec 03, 2018 </td>
-                                    <td>Dec 25, 2018 </td>
-                                    <td class="pl-4">
-                                        <div class="bg-img-group">
-                                            <div class="bg-img bg-img-sm">
-                                                <a class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="Brian" href="#"> <img class="img-fluid" src="assets/img/avtar/01.jpg" alt="user"></a>
-                                            </div>
-                                            <div class="bg-img bg-img-sm">
-                                                <a class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="Smithdro" href="#"> <img class="img-fluid" src="assets/img/avtar/02.jpg" alt="user"></a>
-                                            </div>
-                                            <div class="bg-img bg-img-sm">
-                                                <a class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="Adrian Demiandro" href="#"> <img class="img-fluid" src="assets/img/avtar/03.jpg" alt="user"></a>
-                                            </div>
-                                            <div class="bg-img bg-img-sm">
-                                                <a class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="Sandradro Garett" href="#"> <img class="img-fluid" src="assets/img/avtar/04.jpg" alt="user"></a>
-                                            </div>
-                                            <div class="bg-img bg-img-more bg-img-sm">
-                                                <a class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="View all" href="#"><span>12+</span> </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><label class="badge badge-info-inverse">On Hold</label></td>
-                                    <td>Brian</td>
+                                    <td>{{ $key->team_name }} </td>
+                                    <td>{{ $key->start_date }} </td>
+                                    <td>{{ $key->end_date }} </td>
+                                    
+                                    <td><label @if ($key->status == 'Pending')
+                                        class="badge badge-danger-inverse"
+                                    @else
+                                    class="badge badge-success-inverse"
+                                    @endif>{{ $key->status }}</label></td>
+                                    
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -90,7 +67,7 @@
                 <div class="row align-items-center m-b-20">
                     <div class="col-12 col-sm-2 mb-3 mb-sm-0">
                         <div class="bg-img">
-                            <img style="height: 59px;" class="img-fluid" src="assets/img/profile/{{ $key->image }}" alt="user">
+                            <img style="height: 59px;" class="img-fluid" src="{{ $key->image }}" alt="user">
                         </div>
                     </div>
                     <div class="col-12 col-sm-7 mb-3 mb-sm-0">
