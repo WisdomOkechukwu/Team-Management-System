@@ -34,6 +34,14 @@ Route::post('/team-lead',[AdminController::class,'add_team_lead'])->name('TeamLe
 Route::get('/employee',[AdminController::class,'employee'])->name('Employee');
 
 Route::get('/teams',[AdminController::class,'team_management'])->name('TeamManagement');
+Route::post('/teams',[AdminController::class,'edit_team'])->name('EditMember');
+
+Route::post('/edit',[AdminController::class,'delete_team_data'])->name('DeleteMemeber');
+
+Route::get('/Members/{name}',[AdminController::class,'new_member'])->name('Members');
+Route::post('/Members',[AdminController::class,'new_member_post'])->name('MembersPost');
+
+Route::get('/Lead/{name}',[AdminController::class,'new_lead'])->name('Lead');
 
 //Worker Route
 Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard');

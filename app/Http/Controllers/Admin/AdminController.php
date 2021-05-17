@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Switch_;
 
 class AdminController extends Controller
 {
@@ -79,10 +80,7 @@ class AdminController extends Controller
 
     }
 
-    public function team_management()
-    {
-        return view('Admin.team-management');
-    }
+    
     public function show_team_lead($team)
     {
        
@@ -209,7 +207,135 @@ class AdminController extends Controller
         
        
     }
-    public function edit_team(){
-        return view('Admin.edit-team');
+
+    public function team_management()
+    {   
+        $teamed = Team::select('*')
+            ->where('Biz_id','=', auth()->user()->id)
+            ->get();
+        return view('Admin.team-management',[
+            'Teams' => $teamed,
+        ]);
+    }
+    public function edit_team(Request $request)
+    {
+        
+        switch ($request->input('action')) {
+            case 'edit':
+                $data_status = TeamMember::select('*')
+                ->where('team_id','=', $request->team )
+                ->get();
+                
+
+                $team = Team::find($request->team);
+                
+                $teams = $team->users;
+                return view('Admin.edit-team',[
+                    'Status'=>$data_status,
+                    'Users' => $teams,
+                    'Name' => $team->team_name,
+                ]);
+                break;
+            
+            case 'delete':
+                $teamed = Team::whereId($request->team)->delete();
+                return redirect()->route("AdminDashboard");
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        // 
+    }
+
+    public function delete_team_data(Request $request)
+    {
+        
+        $team_member = TeamMember::select('*')
+            ->where('user_id','=', $request->user_id )
+            ->where('team_id','=', $request->team_id )
+            ->get();
+        $team_member_id = 0;
+        foreach($team_member as $key){
+            $team_member_id = $key->id;
+        }
+        TeamMember::whereId($team_member_id)->delete();
+        return redirect()->route('EditMember');
+        
+
+    }
+
+    public function new_member($name)
+    {
+        $team = Team::select('*')
+        ->where('team_name','=', $name )
+        ->get();
+
+        $teamID = 0;
+        foreach($team as $key){
+            $teamID = $key->id;
+        }
+        
+
+        $teamed = Team::find($teamID);
+        $teams = $teamed->users;
+
+       
+
+        $user = User::select('*')
+        ->where('Biz_id','=',auth()->user()->id)
+        ->get();
+        // dd($teams);
+        $array_teams = array();
+        $array_users = array();
+        foreach($teams as $key)
+        {
+            array_push($array_teams,$key->id);
+        }
+        
+        foreach($user as $keys)
+        {
+            array_push($array_users,$keys->id);
+        }
+        
+        $result = array_diff($array_users,$array_teams);
+        $array_user_not_added = array();
+        foreach($result as $keys)
+        {
+            $user_data = User::find($keys);
+            array_push($array_user_not_added,$user_data);
+        }
+        
+        
+        
+        return view('Admin.team_management.edit',[
+            'Users' => $array_user_not_added,
+            'Name' => $name,
+            'TeamID' => $teamID,
+        ]);
+
+            
+
+    }
+
+    public function new_member_post(Request $request){
+        
+            $Team_Memeber = new TeamMember();
+            $Team_Memeber->user_id = $request->user_id;
+            $Team_Memeber->team_id = $request->team_id;
+            $Team_Memeber->status = "Member";
+            $Team_Memeber->Biz_id = auth()->user()->id;
+
+            $Team_Memeber -> save();
+            dd('done');
+        
+
+    }
+
+    public function new_lead($name)
+    {
+        
     }
 }

@@ -22,24 +22,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($Teams as $key)
+                            
+                        
+                        <form action="{{ route('EditMember') }}" method="POST">
+                            @csrf
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="bg-img mr-4">
-                                        <img src="assets/img/avtar/01.jpg" class="img-fluid" alt="Clients-01">
-                                    </div>
-                                    <p class="font-weight-bold"><a href="#">Adrian Demiandro</a></p>
+                                    
+                                    <p class="font-weight-bold"><a href="#">{{ $key->team_name }}</a></p>
                                 </div>
                             </td>
-                            
+                            <input type="hidden" name="team" value="{{ $key->id }}">
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
-                                    <i class="ti ti-pencil"></i></a>
-                                <a href="javascript:void(0)" class="btn btn-icon btn-outline-danger btn-round mr-2 mb-2 mb-sm-0 ">
-                                    <i class="ti ti-close"></i></a>
+                                <button type="submit" name="action" value="edit" class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 ">
+                                    <i class="ti ti-pencil"></i></button>
+                                <Button type="submit" name="action" value="delete" class="btn btn-icon btn-outline-danger btn-round mr-2 mb-2 mb-sm-0 ">
+                                    <i class="ti ti-close"></i></Button>
                                 
                             </td>
                         </tr>
+                    </form>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
