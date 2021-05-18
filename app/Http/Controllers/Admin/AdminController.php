@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Switch_;
@@ -23,6 +24,7 @@ class AdminController extends Controller
         $value = User::select('*')
         ->where('Biz_id','=', auth()->user()->id )
         ->where('status','=', 'Worker' )
+        ->limit('5')
         ->get();
         return $value;
     }
@@ -35,8 +37,7 @@ class AdminController extends Controller
         $teamed = Team::select('*')
             ->where('Biz_id','=', auth()->user()->id)
             ->get();
-
-        
+       
         return view('Admin.admin',[
             'Worker'=> $value,
             'server' =>$server_name,

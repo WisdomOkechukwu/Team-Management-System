@@ -21,7 +21,7 @@
                                     <th>Project Name </th>
                                     <th> Start Date </th>
                                     <th> Due Date </th>
-                                    
+                                    <th> Time  </th>
                                     <th>Status</th>
                                     
                                 </tr>
@@ -34,6 +34,7 @@
                                     <td>{{ $key->team_name }} </td>
                                     <td>{{ $key->start_date }} </td>
                                     <td>{{ $key->end_date }} </td>
+                                    <td>{{ $key->created_at->diffForHumans() }} </td>
                                     
                                     <td><label @if ($key->status == 'Pending')
                                         class="badge badge-danger-inverse"

@@ -185,7 +185,7 @@
                         <div class="form-group">
                             <label for="modelemail">Team Name</label>
                             <input @error('task') style="border-color: red;"@enderror  
-                            name="task" type="text" class="form-control" id="modelemail" required>
+                            name="task" type="text" class="form-control" id="modelemail" required autocomplete="off">
                             @error('task')
                                 <h6 style="color: red">{{ $message }}</h6>
                                 <script>alert("{{ $message }}");</script>
@@ -201,9 +201,9 @@
                         <div class="form-group">
                             <label for="modelpass">Project Duration</label>
                             <div class="input-group" data-date="23/11/2018" data-date-format="mm/dd/yyyy">
-                                <input type="text" class="form-control range-from" name="from" placeholder="Start Date" required>
+                                <input type="text" class="form-control range-from" name="from" placeholder="Start Date" required autocomplete="off">
                                 <span class="input-group-addon">To</span>
-                                <input class="form-control range-to" type="text" placeholder="End Date" name="to" required>
+                                <input class="form-control range-to" type="text" placeholder="End Date" name="to" required autocomplete="off">
                             </div>
                         </div>
                         
