@@ -26,6 +26,7 @@
                                 <div class="bg-img m-auto"><img style="height: 68px;" class="img-fluid" src="{{ asset($key->image) }}" alt="socialwidget-img"></div>
                                 <div class="p-3">
                                     <input type="hidden" name="team_id" value="{{ $TeamID }}">
+                                    <input type="hidden" name="name" value="{{ $Name }}">
                                     <input type="hidden" name = "user_id" value="{{ $key->id }}">
                                     
                                     <h4 class="mb-1"><a href="javascript:void(0)">{{ $key->name }}</a></h4>

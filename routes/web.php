@@ -42,6 +42,7 @@ Route::get('/Members/{name}',[AdminController::class,'new_member'])->name('Membe
 Route::post('/Members',[AdminController::class,'new_member_post'])->name('MembersPost');
 
 Route::get('/Lead/{name}',[AdminController::class,'new_lead'])->name('Lead');
+Route::post('/Lead/',[AdminController::class,'new_lead_post'])->name('LeadPost');
 
 //Worker Route
 Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard');
