@@ -70,6 +70,8 @@
                                                 <i class="fa fa-user pr-2 text-success"></i> Profile</a>
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">
                                                 <i class="fa fa-compass pr-2 text-warning"></i> Registration Link</a>
+                                                <a class="dropdown-item d-flex nav-link" href="{{ route('logout') }}">
+                                                    <i class="zmdi zmdi-power pr-2 text-danger"></i> Logout</a>
 
                                                 
                                             

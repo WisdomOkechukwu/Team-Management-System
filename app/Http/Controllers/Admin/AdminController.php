@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Switch_;
 
 class AdminController extends Controller
 {
@@ -410,6 +408,7 @@ class AdminController extends Controller
     {       
         $affected = DB::table('team_members')
                     ->where('status', '=', 'Lead')
+                    ->where('team_id', '=', $request->team_id )
                     ->update(array('status' => 'Member'));
         $leader = DB::table('team_members')
                     ->where('user_id', '=', $request->user_id)

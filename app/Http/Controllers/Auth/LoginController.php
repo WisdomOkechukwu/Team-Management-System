@@ -32,4 +32,9 @@ class LoginController extends Controller
 
          return redirect()->route('WorkerDashboard');
     }
+
+    public function logout(){
+        Auth::logout();
+        return view('Auth.login');
+    }
 }
