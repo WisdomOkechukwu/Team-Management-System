@@ -66,3 +66,6 @@ Route::post('/Lead',[AdminController::class,'new_lead_post'])->name('LeadPost');
 //?Worker Route
 Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard');
 
+//? Personal Task Route
+Route::post('/personal',[WorkerController::class,'personal_task'])->name('personal');
+
