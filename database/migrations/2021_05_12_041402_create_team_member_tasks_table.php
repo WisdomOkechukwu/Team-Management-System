@@ -19,12 +19,12 @@ class CreateTeamMemberTasksTable extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->string('status');
-            $table->bigInteger('team_name_id')->unsigned();
+            $table->bigInteger('team_id')->unsigned();
             $table->bigInteger('team_member_id')->unsigned();
             $table->bigInteger('Biz_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('team_name_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->foreign('team_member_id')->references('id')->on('team_members')->onDelete('cascade');
             $table->foreign('Biz_id')->references('id')->on('users')->onDelete('cascade');
         

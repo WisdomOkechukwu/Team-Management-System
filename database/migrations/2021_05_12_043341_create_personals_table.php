@@ -15,11 +15,11 @@ class CreatePersonalsTable extends Migration
     {
         Schema::create('personals', function (Blueprint $table) {
             $table->id();
+            $table->string('task_name');
             $table->string('task_detail');
-            $table->bigInteger('worker_id')->unsigned();
-            $table->string('date');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('worker_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
            
         });
     }
