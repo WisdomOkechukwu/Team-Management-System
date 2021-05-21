@@ -226,33 +226,33 @@
                                                 <table id="datatable" class="display compact table table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Office</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Action</th>
+                                                            <th>Task Name</th>
+                                                            <th>Task Details</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    
-                                                        <tr>
-                                                            <td>Donna Snider</td>
-                                                            <td>Customer Support</td>
-                                                            <td>New York</td>
-                                                            <td>27</td>
-                                                            <td>2011/01/25</td>
-                                                            <td><a href="javascript:void(0);" class="btn btn-round btn-success">Done</a></td>
-                                                        </tr>
+                                                        @foreach ($Personal as $key)
+                                                            
+                                                        
+                                                        <form action="{{ route('personalDone') }}" method="POST">
+                                                            @csrf
+                                                            <tr>
+                                                                <td>{{ $key->task_name }}</td>
+                                                                <input type="hidden" name="id" value="{{ $key->id }}">
+                                                                <td>{{ $key->task_detail }}</td>
+                                                                <td>{{ $key->created_at->diffForHumans() }}</td>
+                                                                
+                                                                <td><button type="submit" class="btn btn-round btn-success">Done</button></td>
+                                                            </tr>
+                                                        </form>
+                                                        @endforeach
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Office</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Salary</th>
+                                                            <th>Task Name</th>
+                                                            <th>Task Details</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -310,11 +310,22 @@
                             @csrf
                             <div class="form-group">
                                 <label for="modelemail">Task Name</label>
-                                <input type="email" name="name" class="form-control" id="modelemail">
+                                <input @error('name') style="border-color: red;"@enderror 
+                                 type="text" name="name" class="form-control" id="modelemail" value="{{ old('name') }}">
+                                 @error('name')
+                                <h6 style="color: red">{{ $message }}</h6>
+                                <script>alert("{{ $message }}");</script>
+                            @enderror
                             </div>
                             <div class="form-group">
                                 <label for="modelpass">Task Details</label>
-                                <textarea type="text" name="Details" class="form-control" id="modelpass" rows="10"></textarea>
+                                <textarea
+                                @error('Details') style="border-color: red;"@enderror
+                                 type="text" name="Details" class="form-control" id="modelpass" rows="10">{{ old('Details') }}</textarea>
+                                 @error('Details')
+                                <h6 style="color: red">{{ $message }}</h6>
+                                <script>alert("{{ $message }}");</script>
+                            @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Proceed</button>
                         </form>

@@ -69,3 +69,6 @@ Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard')
 //? Personal Task Route
 Route::post('/personal',[WorkerController::class,'personal_task'])->name('personal');
 
+Route::post('/personals',[WorkerController::class,'personal_task_done'])->name('personalDone');
+
+
