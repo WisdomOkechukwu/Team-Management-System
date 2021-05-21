@@ -17,6 +17,7 @@ class CreatePersonalsTable extends Migration
             $table->id();
             $table->string('task_name');
             $table->string('task_detail');
+            $table->string('status');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
