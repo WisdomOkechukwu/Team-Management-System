@@ -19,6 +19,7 @@ class AdminController extends Controller
 
     public function employee_select()
     {
+        //?Getting Workers From databse:users.
         $value = User::select('*')
         ->where('Biz_id','=', auth()->user()->id )
         ->where('status','=', 'Worker' )
@@ -30,8 +31,11 @@ class AdminController extends Controller
 
     public function index()
     {   
+        //?Retrieving return vakue from function employee_select
         $value = $this->employee_select();
+        //?Getting the host name
         $server_name = $_SERVER['HTTP_HOST'];
+        //?Getting the teams under an organization
         $teamed = Team::select('*')
             ->where('Biz_id','=', auth()->user()->id)
             ->get();
@@ -47,6 +51,7 @@ class AdminController extends Controller
     
     public function employee()
     {
+        //?Retrieving return vakue from function employee_select
         $value = $this->employee_select();
         return view('Admin.employee-list',[
             'Worker'=> $value,
@@ -56,10 +61,11 @@ class AdminController extends Controller
 
     public function addTeam(Request $request)
     {
-        
+        //? validating the Request data
         $this->validate($request,[
             'task' => 'unique:teams,team_name',
         ]);
+        //? Creating new instance of teams table.
         $team = new Team();
         
         $team->team_name = $request->task;
@@ -70,7 +76,7 @@ class AdminController extends Controller
         $team->Biz_id = auth()->user()->id;
         $team->save();
         
-        
+        //?Retrieving return vakue from function employee_select
         $value = $this->employee_select();
         
         return view('Admin.add-team-members',[
@@ -83,16 +89,16 @@ class AdminController extends Controller
     
     public function show_team_lead($team)
     {
-       
+       //?Retrieving team data using team name
         $team = Team::select('*')
             ->where('team_name','=', $team )
             ->get();
-
+            //?Seeting team Key ID 
             $teamiD = 0;
             foreach($team as $key){
                 $teamiD = $key->id;
             }
-
+        //? Getting Users Under the Team
         $teami = Team::find($teamiD);
          $teams = $teami->users;
 
@@ -109,7 +115,7 @@ class AdminController extends Controller
         
         $user_id = $request->user_id;
         $team_id = $request->team_id;
-
+        //? 
         $team = TeamMember::select('*')
             ->where('user_id','=', $user_id )
             ->where('team_id','=', $team_id )
