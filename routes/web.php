@@ -68,7 +68,9 @@ Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard')
 
 //? Personal Task Route
 Route::post('/personal',[WorkerController::class,'personal_task'])->name('personal');
-
+//?Post method for adding personal task.
 Route::post('/personals',[WorkerController::class,'personal_task_done'])->name('personalDone');
+//?Team Member
+Route::get('/team-member/{name}',[WorkerController::class,'team_member'])->name('TeamMems');
 
 

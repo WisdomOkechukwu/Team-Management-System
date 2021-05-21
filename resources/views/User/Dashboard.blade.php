@@ -154,9 +154,9 @@
                                                 
                                                 @if ($keys->id == $key->team_id)
                                                     <ul aria-expanded="false">
-                                                        <form action="" method="POST">
-                                                            <li class="active"> <a href='index-job-portal.html'>{{ $keys->team_name }}</a> </li>
-                                                        </form>
+                                                        <li class="active">
+                                                            <a href="/team-member/{{ $keys->team_name }}">{{ $keys->team_name }}</a>
+                                                         </li>
                                                     </ul>
                                                 @endif
                                             @endforeach
@@ -233,6 +233,9 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($Personal as $key)
+                                                        @if ($key->status == 'Undone')
+                                                            
+                                                        
                                                             
                                                         
                                                         <form action="{{ route('personalDone') }}" method="POST">
@@ -246,6 +249,7 @@
                                                                 <td><button type="submit" class="btn btn-round btn-success">Done</button></td>
                                                             </tr>
                                                         </form>
+                                                        @endif
                                                         @endforeach
                                                     </tbody>
                                                     <tfoot>
