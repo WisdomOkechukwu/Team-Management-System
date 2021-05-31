@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function employee_select()
     {
-        //?Getting Workers From databse:users.
+        //?Getting Workers From databse:users with output of 5 Members.
         $value = User::select('*')
         ->where('Biz_id','=', auth()->user()->id )
         ->where('status','=', 'Worker' )
