@@ -62,7 +62,7 @@
                                                     <h4 class="text-white mb-0">{{ auth()->user()->name }}</h4>
                                                     <small class="text-white">{{ auth()->user()->email }}</small>
                                                 </div>
-                                                <a href="#" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
+                                                <a href="{{ route('logout') }}" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
                                                                 class="zmdi zmdi-power"></i></a>
                                             </div>
                                         </div>
@@ -90,35 +90,57 @@
                         <ul class="metismenu " id="sidebarNav">
                             <li class="nav-static-title">Personal</li>
                             {{-- Customr Area --}}
-                            <li class="active"><a href="mail-inbox.html" aria-expanded="false"><i class="nav-icon zmdi zmdi-account-circle"></i><span class="nav-title">Dashboard</span></a> </li>
+                            <li class="active"><a href="{{ route('WorkerDashboard') }}" aria-expanded="false"><i class="nav-icon zmdi zmdi-account-circle"></i><span class="nav-title">Dashboard</span></a> </li>
                            
+                            
+                            
                             
                             <li class="active">
                                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                                     <i class="nav-icon zmdi zmdi-folder-person"></i>
                                     <span class="nav-title">Team Task</span>
+                                    <span class="nav-label label label-danger">new</span>
                                     
                                 </a>
-                                <ul aria-expanded="false">
-                                    
-                                    <li class="active"> <a href='index-job-portal.html'>Team A</a> </li>
-                                    
-                                </ul>
-                            </li> 
+                                    @foreach ($TeamMember as $key)
+                                        @if ($key->status =='Member')
+                                            @foreach ($Team as $keys)
+                                                
+                                                @if ($keys->id == $key->team_id)
+                                                    <ul aria-expanded="false">
+                                                        <form action="" method="POST">
+                                                            <li class="active"> <a href='index-job-portal.html'>{{ $keys->team_name }}</a> </li>
+                                                        </form>
+                                                    </ul>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                            </li>     
                             
                             <li class="active">
                                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                                     <i class="nav-icon zmdi zmdi-folder-person"></i>
                                     <span class="nav-title">Team Lead Group(s)</span>
                                     
+                                    
                                 </a>
-                                <ul aria-expanded="false">
-                                    
-                                    <li class="active"> <a href='index-job-portal.html'>Team A</a> </li>
-                                    
-                                </ul>
+                                    @foreach ($TeamMember as $key)
+                                        @if ($key->status =='Lead')
+                                            @foreach ($Team as $keys)
+                                                
+                                                @if ($keys->id == $key->team_id)
+                                                    <ul aria-expanded="false">
+                                                        <form action="" method="POST">
+                                                            <li class="active"> <a href='/leader/{{ $keys->team_name }}'>{{ $keys->team_name }}</a> </li>
+                                                        </form>
+                                                    </ul>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
                             </li> 
-                            
+
                             <li class="active">
                                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                                     <i class="nav-icon zmdi zmdi-folder-person"></i>
@@ -126,12 +148,23 @@
                                     <span class="nav-label label label-danger">new</span>
                                     
                                 </a>
-                                <ul aria-expanded="false">
-                                    
-                                    <li class="active"> <a href='index-job-portal.html'>Team A</a> </li>
-                                    
-                                </ul>
-                            </li>
+                                    @foreach ($TeamMember as $key)
+                                        
+                                            @foreach ($Team as $keys)
+                                                
+                                                @if ($keys->id == $key->team_id)
+                                                    <ul aria-expanded="false">
+                                                        <li class="active">
+                                                            <a href="/team-member/{{ $keys->team_name }}">{{ $keys->team_name }}</a>
+                                                         </li>
+                                                    </ul>
+                                                @endif
+                                            @endforeach
+                                                    
+                                    @endforeach
+                            </li> 
+                                
+                            
                         </ul>
                     </div>
                     <!-- end sidebar-nav -->
@@ -159,7 +192,7 @@
                                         <div class="dropdown">
                                             {{-- For Team Lead --}}
                                             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#teamModal" aria-haspopup="true" aria-expanded="false">
-                                                Add New Task
+                                                Add New Personal Task
                                             </a>
                                         </div>
                                     </div>
@@ -169,67 +202,116 @@
                         </div>
                         <!-- end row -->
                         <!-- begin row -->
+                        {{-- Start  --}}
                        
                         @yield('content')
                         
-                        <!-- end row -->
                     </div>
                     <!-- end container-fluid -->
-                </div>
-                <!-- end app-main -->
-            </div>
-            <!-- end app-container -->
-            <!-- begin footer -->
-            <footer class="footer">
-                <div class="row">
+                    </div>
+                    <!-- end app-main -->
+                    </div>
+                    <!-- end app-container -->
+                    <!-- begin footer -->
+                    <footer class="footer">
+                    <div class="row">
                     <div class="col-12 col-sm-6 text-center text-sm-left">
                         <p>&copy; Copyright 2019. All rights reserved.</p>
                     </div>
                     <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
                         <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
                     </div>
-                </div>
-            </footer>
-            <!-- end footer -->
-        </div>
-        <!-- end app-wrap -->
-    </div>
-    <!-- end app -->
-
-    <!-- plugins -->
-    <script src="assets/js/vendors.js"></script>
-
-    <!-- custom app -->
-    <script src="assets/js/app.js"></script>
-
-    {{-- Add Team Modal --}}
-    <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Personal Task</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="modelemail">Task Name</label>
-                            <input type="email" class="form-control" id="modelemail">
+                    </div>
+                    </footer>
+                    <!-- end footer -->
+                    </div>
+                    <!-- end app-wrap -->
+                    </div>
+                    <!-- end app -->
+                    
+                    <!-- plugins -->
+                    <script src="assets/js/vendors.js"></script>
+                    
+                    <!-- custom app -->
+                    <script src="assets/js/app.js"></script>
+                    
+                    {{-- Add Team Modal --}}
+                    <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Personal Task</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('personal') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="modelemail">Task Name</label>
+                                            <input @error('name') style="border-color: red;"@enderror 
+                                            type="text" name="name" class="form-control" id="modelemail" value="{{ old('name') }}">
+                                            @error('name')
+                                            <h6 style="color: red">{{ $message }}</h6>
+                                            <script>alert("{{ $message }}");</script>
+                                        @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modelpass">Task Details</label>
+                                            <textarea
+                                            @error('Details') style="border-color: red;"@enderror
+                                            type="text" name="Details" class="form-control" id="modelpass" rows="10">{{ old('Details') }}</textarea>
+                                            @error('Details')
+                                            <h6 style="color: red">{{ $message }}</h6>
+                                            <script>alert("{{ $message }}");</script>
+                                        @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Proceed</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="modelpass">Task Details</label>
-                            <textarea type="text" class="form-control" id="modelpass" rows="10"></textarea>
+                    </div>
+
+                    <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Personal Task</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('personal') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="modelemail">Task Name</label>
+                                            <input @error('name') style="border-color: red;"@enderror 
+                                            type="text" name="name" class="form-control" id="modelemail" value="{{ old('name') }}">
+                                            @error('name')
+                                            <h6 style="color: red">{{ $message }}</h6>
+                                            <script>alert("{{ $message }}");</script>
+                                        @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modelpass">Task Details</label>
+                                            <textarea
+                                            @error('Details') style="border-color: red;"@enderror
+                                            type="text" name="Details" class="form-control" id="modelpass" rows="10">{{ old('Details') }}</textarea>
+                                            @error('Details')
+                                            <h6 style="color: red">{{ $message }}</h6>
+                                            <script>alert("{{ $message }}");</script>
+                                        @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Proceed</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Proceed</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-
-</html>
+                    </div>
+                    </body>
+                    
+                    
+                    </html>

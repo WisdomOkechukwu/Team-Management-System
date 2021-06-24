@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\MemeberController;
 use App\Http\Controllers\Worker\WorkerController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,9 +69,22 @@ Route::get('/Worker',[WorkerController::class,'index'])->name('WorkerDashboard')
 
 //? Personal Task Route
 Route::post('/personal',[WorkerController::class,'personal_task'])->name('personal');
+
 //?Post method for adding personal task.
 Route::post('/personals',[WorkerController::class,'personal_task_done'])->name('personalDone');
+
 //?Team Member
 Route::get('/team-member/{name}',[WorkerController::class,'team_member'])->name('TeamMems');
 
+Route::get('/leader/{name}',[WorkerController::class,'team_lead']);
+
+Route::get('/leaders/{name}',[WorkerController::class,'team_lead']);
+
+Route::post('/User-lead',[WorkerController::class,'team_task'])->name('userLead');
+
+Route::post('/ViewDetails',[MemeberController::class, 'view_details'])->name('viewdetails');
+
+Route::post('/TeamMemeberTracker', [MemeberController::class,'show_task'])->name('TeamMemeberTracker');
+
+Route::get('/EditTask/{id}',[MemeberController::class,'getID']);
 

@@ -34,7 +34,7 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        //? Logout User
+        //? Logout User 
         Auth::logout();
         //? Login Route
         return view('Auth.login');

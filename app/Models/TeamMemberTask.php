@@ -9,4 +9,5 @@ class TeamMemberTask extends Model
 {
     use HasFactory;
     protected $table = "team_member_tasks";
+
 }
