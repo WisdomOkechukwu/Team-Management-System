@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +40,8 @@ class RegisterController extends Controller
         $image->move(public_path('assets/img/profile'),$imageName);
         
         $imageus = "assets/img/profile/$imageName";
+
+        $dateStamp = new DateTime();
         
         //? Creating User Details 
         User::create([
@@ -49,6 +52,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'image' =>$imageus,
+            'email_verified_at' => $dateStamp->getTimestamp()
         ]);
         //?Logging User In
         Auth::attempt($request->only('email','password'));
