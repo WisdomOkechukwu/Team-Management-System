@@ -52,7 +52,6 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'image' =>$imageus,
-            'email_verified_at' => $dateStamp->getTimestamp()
         ]);
         //?Logging User In
         Auth::attempt($request->only('email','password'));
