@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
     <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/vendors.css') }}" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- app style -->
     <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/style.css') }}" />
 </head>
@@ -52,7 +51,7 @@
                                 
                                 <li class="nav-item dropdown user-profile">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="{{ asset(auth()->user()->image) }}" alt="avtar-img">
+                                        <img src="{{ secure_asset(auth()->user()->image) }}" alt="avtar-img">
                                         <span class="bg-success user-status"></span>
                                     </a>
                                     <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
