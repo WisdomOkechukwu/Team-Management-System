@@ -14,9 +14,9 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/vendors.css') }}" />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/style.css') }}" />
 </head>
 
 <body>
@@ -178,10 +178,10 @@
     <!-- end app -->
 
     <!-- plugins -->
-    <script src="{{ asset('assets/js/vendors.js') }}"></script>
+    <script src="{{ secure_asset('assets/js/vendors.js') }}"></script>
 
     <!-- custom app -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ secure_asset('assets/js/app.js') }}"></script>
 </body>
 
 

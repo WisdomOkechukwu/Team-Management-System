@@ -9,13 +9,13 @@
     <meta name="author" content="Potenza Global Solutions" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- app favicon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" href="{{secure_asset('assets/img/favicon.ico')}}">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/vendors.css') }}" />
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('assets/css/style.css') }}" />
 </head>
 
 <body>
@@ -33,8 +33,8 @@
                     <div class="navbar-header d-flex align-items-center">
                         <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
                         <a class="navbar-brand" href="index.html">
-                            <img src="{{ asset('assets/img/logo.png') }}" class="img-fluid logo-desktop" alt="logo" />
-                            <img src="{{ asset('assets/img/logo-icon.png') }}" class="img-fluid logo-mobile" alt="logo" />
+                            <img src="{{ secure_asset('assets/img/logo.png') }}" class="img-fluid logo-desktop" alt="logo" />
+                            <img src="{{ secure_asset('assets/img/logo-icon.png') }}" class="img-fluid logo-mobile" alt="logo" />
                         </a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
                                 <li class="nav-item dropdown user-profile">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
-                                        <img src="{{asset(auth()->user()->image)}}" alt="avtar-img">
+                                        <img src="{{secure_asset(auth()->user()->image)}}" alt="avtar-img">
                                         
                                         <span class="bg-success user-status"></span>
                                     </a>
@@ -180,7 +180,7 @@
                                 <!-- begin page title -->
                                 <div class="user-welcome d-block d-xl-flex flex-nowrap align-items-center">
                                     <div class="bg-img mb-2 mb-xl-0 mr-3">
-                                        <img class="img-fluid rounded" src="{{asset(auth()->user()->image)}}" alt="user">
+                                        <img class="img-fluid rounded" src="{{secure_asset(auth()->user()->image)}}" alt="user">
                                     </div>
                                     <div class="page-title mb-2 mb-xl-0">
                                         <h1 class="mb-1">Good Day, {{ auth()->user()->name }}</h1>
@@ -230,10 +230,10 @@
                     <!-- end app -->
                     
                     <!-- plugins -->
-                    <script src="assets/js/vendors.js"></script>
+                    <script src="{{secure_asset('assets/js/vendors.js')}}"></script>
                     
                     <!-- custom app -->
-                    <script src="assets/js/app.js"></script>
+                    <script src="{{secure_asset('assets/js/app.js')}}"></script>
                     
                     {{-- Add Team Modal --}}
                     <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">

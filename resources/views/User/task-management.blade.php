@@ -26,7 +26,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="bg-img mr-4">
-                                        <img src="assets/img/avtar/01.jpg" class="img-fluid" alt="Clients-01">
+                                        <img src="{{ secure_asset('assets/img/avtar/01.jpg') }}" class="img-fluid" alt="Clients-01">
                                     </div>
                                     <p class="font-weight-bold"><a href="#">Adrian Demiandro</a></p>
                                 </div>

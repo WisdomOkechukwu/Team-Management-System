@@ -56,7 +56,7 @@
                             <div class="row align-items-center m-b-20">
                                 <div class="col-4 col-xs-2">
                                     <div class="bg-img">
-                                        <img style="height: 50px" class="img-fluid" src="{{ asset($key->image) }}" alt="user">
+                                        <img style="height: 50px" class="img-fluid" src="{{ secure_asset($key->image) }}" alt="user">
                                     </div>
                                 </div>
                                 <div class="col-8 col-xs-6">
